@@ -4,9 +4,10 @@
     --primary-gold-hover: #f7ba21;
     --text-white: #ffffff;
     --bg-black: #000000;
+    --bg-dark-gray: #1a1a1a;
     --transition-smooth: 400ms ease-out;
-    --header-height: 10vh;
-    --footer-height: 4vh;
+    --header-height: 80px;
+    --footer-height: 40px;
 }
 
 /* === Reset et Base === */
@@ -16,18 +17,18 @@
     padding: 0;
 }
 
-body,
 html {
-    font-family: "Libre Baskerville", serif;
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Masquer les barres de défilement */
 body {
+    font-family: "Libre Baskerville", serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-white);
+    overflow-x: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -42,23 +43,22 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 99;
+    z-index: 100;
     height: var(--header-height);
-    min-height: 60px;
-    padding: 0 clamp(16px, 3vw, 32px);
+    padding: 16px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
 }
 
 header > a {
     background-image: url(assets/logo_baseline_white.png);
     background-size: contain;
-    background-position: center;
+    background-position: center left;
     background-repeat: no-repeat;
-    width: clamp(100px, 15vw, 180px);
-    height: 80%;
+    width: 130px;
+    height: 60px;
     text-indent: -9999px;
     overflow: hidden;
     flex-shrink: 0;
@@ -66,19 +66,23 @@ header > a {
 
 header > button {
     color: var(--text-white);
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-size: 1rem;
+    font-weight: 400;
     border: 2px solid transparent;
     background: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: border-color var(--transition-smooth);
-    border-radius: 4px;
+    transition: all var(--transition-smooth);
+    border-radius: 6px;
+    font-family: "Libre Baskerville", serif;
 }
 
 header > button:hover,
 header > button:focus {
     border-color: var(--primary-gold);
+    color: var(--primary-gold);
     outline: none;
+    transform: translateY(-1px);
 }
 
 /* === Footer === */
@@ -89,17 +93,17 @@ footer {
     left: 0;
     right: 0;
     height: var(--footer-height);
-    min-height: 30px;
-    z-index: 99;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0 clamp(16px, 2vw, 32px);
+    padding: 0 32px;
 }
 
 footer > span {
-    color: var(--text-white);
-    font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
 }
 
 /* === Section 1 - Hero === */
@@ -109,7 +113,7 @@ footer > span {
     height: 100vh;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: flex-end;
 }
 
@@ -124,74 +128,74 @@ footer > span {
     transform: translate(-50%, -50%);
     object-fit: cover;
     filter: saturate(50%) brightness(35%) contrast(110%) hue-rotate(10deg);
-    transition: top 0ms, left 0ms;
-    will-change: top, left;
+    transition: none;
+    will-change: transform;
+    pointer-events: none;
 }
 
 .section1 > .videohidden {
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
 }
 
 .section1 > .videoshowed {
     opacity: 1;
+    visibility: visible;
 }
 
 .section1 > div {
     position: relative;
     z-index: 2;
-    max-width: min(800px, 90vw);
+    max-width: 700px;
     width: 100%;
-    padding: clamp(20px, 4vw, 40px);
-    margin-right: clamp(10px, 3vw, 30px);
-    margin-top: var(--header-height);
-    margin-bottom: var(--footer-height);
+    padding: 30px;
+    margin-right: 32px;
+    margin-bottom: 32px;
     color: var(--text-white);
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, 3vh, 24px);
-    max-height: calc(100vh - var(--header-height) - var(--footer-height) - 40px);
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-
-.section1 > div::-webkit-scrollbar {
-    display: none;
+    gap: 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
 }
 
 .section1 > div > h1 {
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: 2rem;
     line-height: 1.2;
-    margin-bottom: 0.5em;
+    font-weight: 700;
+    margin: 0;
 }
 
 .section1 > div > p {
-    font-size: clamp(0.9rem, 2vw, 1.3rem);
-    line-height: 1.6;
-    text-align: justify;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+    font-weight: 200;
 }
 
 .section1 > div > button {
     background-color: var(--primary-gold);
-    min-height: clamp(60px, 10vh, 80px);
-    min-width: clamp(160px, 30vw, 200px);
-    border-radius: 16px;
+    height: 70px;
+    width: 220px;
+    border-radius: 12px;
     border: none;
     color: var(--text-white);
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    margin: 20px auto 0;
+    margin-top: 10px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     transition: all var(--transition-smooth);
-    align-self: center;
+    align-self: flex-start;
+    font-family: "Libre Baskerville", serif;
 }
 
 .section1 > div > button:hover,
 .section1 > div > button:focus {
     background-color: var(--primary-gold-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(218, 165, 32, 0.5);
     outline: none;
 }
 
@@ -200,24 +204,23 @@ footer > span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: clamp(40px, 8vh, 80px) clamp(16px, 3vw, 20px);
+    padding: 80px 32px;
     min-height: 100vh;
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
 }
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: clamp(20px, 3vw, 30px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 0;
 }
 
 .formula {
     color: var(--text-white);
-    padding: clamp(20px, 3vw, 30px);
+    padding: 30px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -227,7 +230,7 @@ footer > span {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 500px;
+    min-height: 550px;
     overflow: hidden;
 }
 
@@ -239,13 +242,13 @@ footer > span {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%);
+    transition: background 0.3s ease;
     z-index: 1;
 }
 
 .formula:hover::before {
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
 }
 
 .formula * {
@@ -266,41 +269,46 @@ footer > span {
 }
 
 .formula h1 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 0.5em;
+    font-size: 1.75rem;
+    margin-bottom: 12px;
     color: var(--primary-gold);
+    font-weight: 700;
 }
 
 .formula h2 {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    margin-bottom: 1em;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
     font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .formula p {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-white);
-    margin-bottom: 1em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
 }
 
 .formula ul {
     list-style-type: none;
     padding: 0;
-    margin: 1em 0;
+    margin: 20px 0;
 }
 
 .formula ul span {
     display: block;
     font-weight: 700;
-    margin-bottom: 0.5em;
+    margin-bottom: 12px;
     color: var(--primary-gold);
+    font-size: 1rem;
 }
 
 .formula ul li {
-    margin: 8px 0;
-    padding-left: 1.5em;
+    margin: 10px 0;
+    padding-left: 24px;
     position: relative;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .formula ul li::before {
@@ -308,93 +316,100 @@ footer > span {
     position: absolute;
     left: 0;
     color: var(--primary-gold);
+    font-weight: bold;
 }
 
 .formula .details {
-    margin: auto 0 1em 0;
-    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-    color: rgba(255, 255, 255, 0.9);
+    margin-top: auto;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .formula .details span {
     display: block;
-    margin: 0.5em 0;
+    margin: 8px 0;
 }
 
 .formula button {
     background-color: var(--primary-gold);
     color: var(--text-white);
-    padding: 12px 24px;
+    padding: 14px 28px;
     border: none;
     border-radius: 8px;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-smooth);
-    align-self: center;
-    width: 100%;
-    max-width: 250px;
+    margin-top: 16px;
+    font-family: "Libre Baskerville", serif;
 }
 
 .formula button:hover,
 .formula button:focus {
     background-color: var(--primary-gold-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(218, 165, 32, 0.4);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
     outline: none;
 }
 
 .formula:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
 }
 
 /* === Newsletter === */
 .newsletter {
     background-color: var(--primary-gold);
     color: var(--text-white);
-    padding: clamp(20px, 4vw, 40px);
+    padding: 40px;
     border-radius: 12px;
-    margin-top: clamp(30px, 6vh, 60px);
+    margin-top: 60px;
     text-align: center;
     width: 100%;
     max-width: 800px;
 }
 
 .newsletter p {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    margin-bottom: 20px;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    font-weight: 600;
 }
 
 .newsletter input {
-    padding: 12px 16px;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    padding: 14px 18px;
+    font-size: 1rem;
     border: none;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 15px;
+    max-width: 450px;
+    margin-bottom: 16px;
+    font-family: "Libre Baskerville", serif;
 }
 
 .newsletter input:focus {
-    outline: 2px solid var(--bg-black);
+    outline: 3px solid rgba(0, 0, 0, 0.3);
 }
 
 .newsletter button {
     background-color: #333;
     color: var(--text-white);
-    padding: 12px 24px;
+    padding: 14px 32px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    transition: background-color var(--transition-smooth);
-    width: 100%;
-    max-width: 300px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-smooth);
+    font-family: "Libre Baskerville", serif;
 }
 
 .newsletter button:hover,
 .newsletter button:focus {
     background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     outline: none;
 }
 
@@ -407,19 +422,20 @@ footer > span {
     min-height: 100vh;
     background-color: var(--bg-black);
     color: var(--text-white);
-    padding: clamp(40px, 8vh, 80px) clamp(16px, 3vw, 40px);
+    padding: 80px 32px;
 }
 
 .section3 h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: clamp(20px, 4vh, 40px);
+    font-size: 2.5rem;
+    margin-bottom: 40px;
     color: var(--primary-gold);
+    font-weight: 700;
 }
 
 .section3 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     max-width: 600px;
     width: 100%;
     gap: 20px;
@@ -428,11 +444,11 @@ footer > span {
 .section3 input,
 .section3 textarea {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
     border-radius: 8px;
     border: 2px solid transparent;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    font-family: inherit;
+    font-size: 1rem;
+    font-family: "Libre Baskerville", serif;
     transition: border-color var(--transition-smooth);
 }
 
@@ -450,21 +466,21 @@ footer > span {
 .section3 button {
     background-color: var(--primary-gold);
     color: var(--text-white);
-    padding: 12px 32px;
+    padding: 14px 32px;
     border: none;
     border-radius: 8px;
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-smooth);
-    width: 100%;
-    max-width: 250px;
+    font-family: "Libre Baskerville", serif;
 }
 
 .section3 button:hover,
 .section3 button:focus {
     background-color: var(--primary-gold-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(218, 165, 32, 0.4);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
     outline: none;
 }
 
@@ -473,83 +489,12 @@ video::-webkit-media-controls {
     display: none !important;
 }
 
-video::-moz-media-controls {
+video::-webkit-media-controls-enclosure {
     display: none !important;
 }
 
-/* === Media Queries === */
-@media (max-width: 1024px) {
-    .container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --header-height: 70px;
-        --footer-height: 50px;
-    }
-
-    header {
-        padding: 0 16px;
-    }
-
-    .section1 > div {
-        margin-right: 0;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .section1 > div > p {
-        text-align: left;
-    }
-
-    .container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .formula {
-        min-height: 450px;
-    }
-
-    .newsletter input,
-    .newsletter button {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .section1 > video {
-        width: 150%;
-        height: 150%;
-    }
-
-    .formula {
-        min-height: 400px;
-        padding: 20px;
-    }
-
-    .section3 input,
-    .section3 textarea,
-    .section3 button {
-        font-size: 16px; /* Empêche le zoom sur iOS */
-    }
-}
-
-/* === Amélioration de l'accessibilité === */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    .section1 > video {
-        transition: none !important;
-    }
+video::-webkit-media-controls-panel {
+    display: none !important;
 }
 
 /* === Classes utilitaires === */
@@ -569,4 +514,273 @@ video::-moz-media-controls {
     font-family: "Libre Baskerville", serif;
     font-weight: 400;
     font-style: italic;
+}
+
+/* === Media Queries === */
+
+/* Tablettes et petits desktops */
+@media screen and (max-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .section1 > div {
+        max-width: 600px;
+        margin-right: 40px;
+    }
+}
+
+/* Tablettes */
+@media screen and (max-width: 900px) {
+    :root {
+        --header-height: 70px;
+        --footer-height: 35px;
+    }
+
+    header {
+        padding: 0 24px;
+    }
+
+    header > a {
+        width: 130px;
+        height: 50px;
+    }
+
+    header > button {
+        font-size: 0.95rem;
+        padding: 8px 16px;
+    }
+
+    .section1 > div {
+        max-width: 550px;
+        padding: 32px;
+        margin-right: 30px;
+    }
+
+    .section1 > div > h1 {
+        font-size: 2rem;
+    }
+
+    .section1 > div > p {
+        font-size: 1rem;
+    }
+
+    .section1 > div > button {
+        height: 65px;
+        width: 200px;
+        font-size: 1rem;
+    }
+
+    .section2 {
+        padding: 60px 24px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .formula {
+        min-height: 520px;
+    }
+
+    .newsletter {
+        padding: 35px;
+    }
+
+    .newsletter p {
+        font-size: 1.25rem;
+    }
+
+    .section3 {
+        padding: 60px 24px;
+    }
+
+    .section3 h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobiles */
+@media screen and (max-width: 600px) {
+    :root {
+        --header-height: 65px;
+        --footer-height: 40px;
+    }
+
+    header {
+        padding: 0 16px;
+    }
+
+    header > a {
+        width: 110px;
+        height: 45px;
+    }
+
+    header > button {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    footer {
+        padding: 0 16px;
+    }
+
+    footer > span {
+        font-size: 0.7rem;
+    }
+
+    .section1 > div {
+        max-width: 100%;
+        margin: 16px 16px;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .section1 > div > h1 {
+        font-size: 1.75rem;
+    }
+
+    .section1 > div > p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .section1 > div > button {
+        height: 60px;
+        width: 100%;
+        max-width: 250px;
+        font-size: 0.95rem;
+        align-self: center;
+    }
+
+    .section2 {
+        padding: 50px 16px;
+    }
+
+    .container {
+        gap: 25px;
+    }
+
+    .formula {
+        padding: 25px;
+        min-height: 500px;
+    }
+
+    .formula h1 {
+        font-size: 1.6rem;
+    }
+
+    .formula h2 {
+        font-size: 1.15rem;
+    }
+
+    .formula p {
+        font-size: 0.95rem;
+    }
+
+    .formula ul li {
+        font-size: 0.9rem;
+    }
+
+    .formula .details {
+        font-size: 0.85rem;
+    }
+
+    .newsletter {
+        padding: 30px 20px;
+    }
+
+    .newsletter p {
+        font-size: 1.15rem;
+    }
+
+    .newsletter input {
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .newsletter button {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .section3 {
+        padding: 50px 16px;
+    }
+
+    .section3 h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .section3 input,
+    .section3 textarea,
+    .section3 button {
+        font-size: 16px; /* Évite le zoom automatique sur iOS */
+    }
+
+    .section3 button {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Petits mobiles */
+@media screen and (max-width: 400px) {
+    header > a {
+        width: 100px;
+        height: 40px;
+    }
+
+    .section1 > div {
+        padding: 20px;
+    }
+
+    .section1 > div > h1 {
+        font-size: 1.5rem;
+    }
+
+    .section1 > div > p {
+        font-size: 0.9rem;
+    }
+
+    .formula {
+        padding: 20px;
+        min-height: 480px;
+    }
+
+    .formula h1 {
+        font-size: 1.5rem;
+    }
+
+    .formula h2 {
+        font-size: 1.1rem;
+    }
+}
+
+/* === Amélioration de l'accessibilité === */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .section1 > video {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .formula:hover {
+        transform: none !important;
+    }
+}
+
+/* Mode sombre (si le système l'utilise) */
+@media (prefers-color-scheme: dark) {
+    /* Les styles sont déjà en mode sombre par défaut */
 }
